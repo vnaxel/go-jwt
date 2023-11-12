@@ -52,10 +52,13 @@ func Signup(c *gin.Context) {
 	}
 
 	// Respond
-	c.JSON(http.StatusOK, gin.H{})
+	c.JSON(http.StatusOK, gin.H{
+		"message":"succesfully signed up",
+	})
 }
 
 func Login(c *gin.Context) {
+
 	// Get the email and pass off req body
 	var body struct {
 		Email    string
@@ -112,5 +115,15 @@ func Login(c *gin.Context) {
 	// Send it back
 	c.SetSameSite(http.SameSiteLaxMode)
 	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
-	c.JSON(http.StatusOK, gin.H{})
+	c.JSON(http.StatusOK, gin.H{
+		"message":"succesfully logged in",
+	})
+}
+
+func Validate(c *gin.Context) {
+	user, _  := c.Get("user")
+	
+	c.JSON(http.StatusOK, gin.H{
+		"userLoggedIn": user,
+	})
 }
