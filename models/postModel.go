@@ -6,6 +6,6 @@ type Post struct {
 	gorm.Model
 	Title string
 	Body string
-	AuthorID uint
-	AuthorEmail string
+	UserID uint
+	User User
 }
