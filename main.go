@@ -20,6 +20,7 @@ func main() {
 	r.GET("/validate", middleware.RequireAuth, controllers.Validate)
 
 	r.POST("/posts", middleware.RequireAuth, controllers.CreatePost)
+	r.GET("/posts", middleware.RequireAuth, controllers.GetPosts)
 
 	r.Run() // listen and serve on 0.0.0.0:3000
 }

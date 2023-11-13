@@ -54,3 +54,21 @@ func CreatePost (c *gin.Context) {
 		},
 	})
 }
+
+func GetPosts (c *gin.Context) {
+	
+	type Post struct {
+		Title string
+		Body string
+		AuthorID uint
+		AuthorEmail string
+	}
+
+	var posts []Post
+
+	initializers.DB.Table("posts").Select("posts.title, posts.body, posts.user_id as author_id, users.email as author_email").Joins("left join users on users.id = posts.user_id").Scan(&posts)
+
+	c.JSON(200, gin.H{
+		"posts": posts,
+	})
+}
