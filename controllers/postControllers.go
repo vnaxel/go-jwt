@@ -44,11 +44,13 @@ func CreatePost (c *gin.Context) {
 		"post": struct {
 			Title string
 			Body string
-			UserID uint
+			AuthorID uint
+			AuthorEmail string
 		}{
 			Title: post.Title,
 			Body: post.Body,
-			UserID: post.UserID,
+			AuthorID: post.UserID,
+			AuthorEmail: post.User.Email,
 		},
 	})
 }
